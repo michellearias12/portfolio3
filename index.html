@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michelle Arias | Portfolio</title>
+    <title>Michelle Arias | Portafolio</title>
     <style>
       :root {
         --bg: #0f172a;
@@ -39,11 +39,6 @@
         text-decoration: none;
       }
 
-      img {
-        max-width: 100%;
-        display: block;
-      }
-
       .container {
         width: min(100% - 2rem, var(--max-width));
         margin: 0 auto;
@@ -60,7 +55,7 @@
 
       .section-subtitle {
         color: var(--muted);
-        max-width: 700px;
+        max-width: 760px;
         margin-bottom: 2rem;
       }
 
@@ -110,7 +105,7 @@
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.3fr 0.9fr;
+        grid-template-columns: 1.25fr 0.95fr;
         gap: 2rem;
         align-items: center;
       }
@@ -126,7 +121,7 @@
       }
 
       .hero h1 {
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-size: clamp(2.4rem, 6vw, 4.3rem);
         line-height: 1.05;
         margin-bottom: 1rem;
       }
@@ -134,7 +129,7 @@
       .hero p {
         color: var(--muted);
         font-size: 1.05rem;
-        max-width: 640px;
+        max-width: 680px;
         margin-bottom: 1.75rem;
       }
 
@@ -151,7 +146,7 @@
       }
 
       .hero-card h2 {
-        font-size: 1.5rem;
+        font-size: 1.45rem;
         margin-bottom: 0.75rem;
       }
 
@@ -228,7 +223,7 @@
       .about-grid,
       .contact-grid {
         display: grid;
-        grid-template-columns: 1.2fr 1fr;
+        grid-template-columns: 1.15fr 0.95fr;
         gap: 2rem;
       }
 
@@ -297,13 +292,15 @@
       .service-card p,
       .project-card p,
       .contact-text,
-      .about-text {
+      .about-text,
+      .timeline-text,
+      .project-meta {
         color: var(--muted);
       }
 
       .project-tag {
         display: inline-block;
-        margin: 1rem 0 0.75rem;
+        margin: 0 0 0.75rem;
         font-size: 0.85rem;
         color: var(--accent);
         font-weight: 700;
@@ -315,6 +312,27 @@
         display: inline-block;
         margin-top: 1rem;
         color: var(--text);
+        font-weight: 700;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .timeline-item {
+        padding: 1rem 1rem 0;
+        border-left: 2px solid rgba(56, 189, 248, 0.35);
+      }
+
+      .timeline-item h3 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .timeline-item span {
+        color: var(--accent);
+        font-size: 0.9rem;
         font-weight: 700;
       }
 
@@ -408,11 +426,11 @@
           <a href="#home" class="logo">Michelle Arias</a>
           <nav>
             <ul class="nav-list">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#home">Inicio</a></li>
+              <li><a href="#about">Sobre mí</a></li>
+              <li><a href="#services">Qué hago</a></li>
+              <li><a href="#projects">Experiencia</a></li>
+              <li><a href="#contact">Contacto</a></li>
             </ul>
           </nav>
         </div>
@@ -424,35 +442,35 @@
         <div class="container">
           <div class="hero-grid">
             <div>
-              <span class="eyebrow">Portfolio</span>
-              <h1>Designer, developer, and problem solver.</h1>
+              <span class="eyebrow">Portafolio</span>
+              <h1>Conecto negocio, datos y tecnología para convertir complejidad en soluciones claras.</h1>
               <p>
-                Replace this intro with a short summary about who you are, what you
-                do, and the kind of work you want to attract.
+                Tengo formación en ingeniería, estadística e investigación de operaciones, y experiencia en transformación digital,
+                análisis de datos, modelado, estrategia y sistemas. Mi valor está en estructurar problemas complejos y traducirlos
+                en soluciones accionables, ya sea a través de plataformas, datos, automatización o lógica de negocio.
               </p>
 
               <div class="btn-row">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                <a href="#projects" class="btn btn-primary">Ver experiencia</a>
+                <a href="#contact" class="btn btn-secondary">Contactarme</a>
               </div>
 
               <div class="social-links">
-                <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="mailto:michiarias02@gmail.com">Email</a>
                 <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="mailto:you@example.com">Email</a>
+                <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
               </div>
             </div>
 
             <aside class="hero-card">
-              <h2>Quick Snapshot</h2>
+              <h2>Mi enfoque</h2>
               <p>
-                This block replaces the broken hero image so the page works as a
-                single-file template.
+                No me defino por una sola herramienta. Me defino por mi capacidad de entender sistemas, ordenar información y llevar ideas a ejecución.
               </p>
               <ul class="hero-highlights">
-                <li><strong>Location:</strong>Panama City, Panama</li>
-                <li><strong>Focus:</strong> Web design, frontend, branding</li>
-                <li><strong>Availability:</strong> Open for freelance or full-time roles</li>
+                <li><strong>Ubicación:</strong> Ciudad de Panamá, Panamá</li>
+                <li><strong>Intersección:</strong> negocio, datos, procesos y tecnología</li>
+                <li><strong>Fortaleza:</strong> traducir complejidad en estructura y acción</li>
               </ul>
             </aside>
           </div>
@@ -461,42 +479,47 @@
 
       <section id="about" class="section">
         <div class="container">
-          <h2 class="section-title">About Me</h2>
+          <h2 class="section-title">Sobre mí</h2>
           <p class="section-subtitle">
-            Use this section to explain your background, strengths, and the value you bring.
+            Mi trayectoria tiene un hilo conductor claro: entender cómo funcionan los sistemas, estructurarlos y transformarlos en decisiones, procesos o soluciones digitales.
           </p>
 
           <div class="about-grid">
             <div class="card">
               <p class="about-text">
-                I help businesses and individuals create clean, effective digital
-                experiences. My work combines thoughtful design, solid development,
-                and a focus on usability.
+                Comencé mi formación en Ingeniería Industrial, donde desarrollé una base sólida en procesos, optimización y pensamiento estructurado. Luego profundicé en Estadística e Investigación de Operaciones, lo que me permitió modelar sistemas con datos y abordar problemas desde una perspectiva cuantitativa.
               </p>
               <br />
               <p class="about-text">
-                Add your story here: your experience, tools, industries, and the kinds
-                of projects you enjoy most.
+                Profesionalmente, he trabajado en transformación digital, consultoría, plataformas, análisis financiero y estrategia. Aunque mis experiencias abarcan distintas áreas, todas responden a una misma lógica: entender la complejidad, conectar negocio con tecnología y convertirla en una solución clara, útil y ejecutable.
+              </p>
+              <br />
+              <p class="about-text">
+                No soy desarrolladora tradicional, pero sí tengo una comprensión profunda de sistemas, lógica, datos y herramientas. Puedo leer código, entender estructuras técnicas rápidamente y apoyarme en inteligencia artificial para construir o adaptar soluciones funcionales con agilidad.
               </p>
             </div>
 
             <div class="card">
               <div class="skills">
                 <div>
-                  <div class="skill-label"><span>UI / UX Design</span><span>90%</span></div>
-                  <div class="skill-bar"><span style="width: 90%"></span></div>
-                </div>
-                <div>
-                  <div class="skill-label"><span>HTML / CSS</span><span>95%</span></div>
+                  <div class="skill-label"><span>Análisis estructurado</span><span>95%</span></div>
                   <div class="skill-bar"><span style="width: 95%"></span></div>
                 </div>
                 <div>
-                  <div class="skill-label"><span>JavaScript</span><span>80%</span></div>
-                  <div class="skill-bar"><span style="width: 80%"></span></div>
+                  <div class="skill-label"><span>Datos y modelado</span><span>90%</span></div>
+                  <div class="skill-bar"><span style="width: 90%"></span></div>
                 </div>
                 <div>
-                  <div class="skill-label"><span>Brand Strategy</span><span>75%</span></div>
-                  <div class="skill-bar"><span style="width: 75%"></span></div>
+                  <div class="skill-label"><span>Transformación digital</span><span>90%</span></div>
+                  <div class="skill-bar"><span style="width: 90%"></span></div>
+                </div>
+                <div>
+                  <div class="skill-label"><span>Traducción negocio-tecnología</span><span>95%</span></div>
+                  <div class="skill-bar"><span style="width: 95%"></span></div>
+                </div>
+                <div>
+                  <div class="skill-label"><span>Análisis financiero</span><span>80%</span></div>
+                  <div class="skill-bar"><span style="width: 80%"></span></div>
                 </div>
               </div>
             </div>
@@ -506,31 +529,28 @@
 
       <section id="services" class="section">
         <div class="container">
-          <h2 class="section-title">Services</h2>
+          <h2 class="section-title">Qué hago</h2>
           <p class="section-subtitle">
-            Replace these with the services you actually offer.
+            Trabajo en problemas complejos que requieren integrar análisis, lógica, sistemas y visión de negocio.
           </p>
 
           <div class="services-grid">
             <article class="service-card">
-              <h3>Web Design</h3>
+              <h3>Traducción de procesos a soluciones</h3>
               <p>
-                Landing pages, personal brands, and marketing sites with a clean,
-                modern look.
+                Convierto necesidades de negocio y procesos complejos en estructuras claras, requerimientos funcionales, automatizaciones y soluciones utilizables.
               </p>
             </article>
             <article class="service-card">
-              <h3>Frontend Development</h3>
+              <h3>Análisis de datos y modelado</h3>
               <p>
-                Responsive, accessible interfaces built with maintainable HTML, CSS,
-                and JavaScript.
+                Trabajo con datos, métricas y modelos para generar claridad, identificar patrones y apoyar decisiones con base cuantitativa.
               </p>
             </article>
             <article class="service-card">
-              <h3>Creative Direction</h3>
+              <h3>Transformación digital y plataformas</h3>
               <p>
-                Visual systems, content structure, and design decisions aligned with
-                your goals.
+                Entiendo cómo funcionan las plataformas, identifico mejoras, estructuro lógica de sistema y apoyo implementaciones con una visión integral.
               </p>
             </article>
           </div>
@@ -539,79 +559,127 @@
 
       <section id="projects" class="section">
         <div class="container">
-          <h2 class="section-title">Projects</h2>
+          <h2 class="section-title">Experiencia y trayectoria</h2>
           <p class="section-subtitle">
-            These cards replace the original image-based portfolio items so the page works without extra assets.
+            Mi experiencia ha evolucionado desde el análisis cuantitativo y el modelado, hacia la transformación digital, la consultoría de sistemas y la estrategia financiera.
           </p>
 
           <div class="projects-grid">
             <article class="project-card">
-              <span class="project-tag">UI / UX</span>
-              <h3>Finance Dashboard</h3>
+              <span class="project-tag">Estrategia financiera y análisis</span>
+              <h3>Business Analyst | Data &amp; Financial Strategy</h3>
+              <p class="project-meta">BECREX · Madrid</p>
               <p>
-                Briefly describe the challenge, your contribution, and the outcome.
+                Analicé estados financieros, ventas y composición de ingresos; construí métricas y visualizaciones para evaluar desempeño y apoyar procesos de valoración. También traduje hallazgos analíticos en materiales claros y orientados a inversionistas.
               </p>
-              <a class="project-link" href="#">Project link</a>
             </article>
             <article class="project-card">
-              <span class="project-tag">Branding</span>
-              <h3>Product Launch Site</h3>
+              <span class="project-tag">Negocio + tecnología</span>
+              <h3>Business Analyst | Salesforce Consultant</h3>
+              <p class="project-meta">McKinsey &amp; Company · Madrid</p>
               <p>
-                Add a few lines about what you designed or built and the results.
+                Traducí procesos de negocio en soluciones dentro de Salesforce, diseñando modelos de datos, automatizaciones, validaciones, dashboards y configuraciones funcionales. Fui puente entre stakeholders, QA y equipos técnicos durante diseño, pruebas y despliegues.
               </p>
-              <a class="project-link" href="#">Project link</a>
             </article>
             <article class="project-card">
-              <span class="project-tag">Development</span>
-              <h3>Portfolio Website</h3>
+              <span class="project-tag">Transformación digital</span>
+              <h3>Digital Transformation &amp; IT Specialist Intern</h3>
+              <p class="project-meta">Vector Renewables · Madrid</p>
               <p>
-                Showcase a website, app, redesign, or case study with a concise summary.
+                Apoyé la mejora de una plataforma digital para monitoreo de activos renovables, definiendo KPIs, dashboards, lógica funcional, alertas y mejoras de producto a partir del análisis operativo y técnico.
               </p>
-              <a class="project-link" href="#">Project link</a>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Base académica</h2>
+          <p class="section-subtitle">
+            Mi formación explica por qué pienso como pienso: con estructura, lógica y una orientación clara hacia sistemas y decisiones.
+          </p>
+
+          <div class="about-grid">
+            <div class="card">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <span>Máster</span>
+                  <h3>Estadística e Investigación de Operaciones</h3>
+                  <p class="timeline-text">
+                    Profundicé en modelado cuantitativo, análisis estadístico, machine learning y resolución estructurada de problemas complejos.
+                  </p>
+                </div>
+                <div class="timeline-item">
+                  <span>Licenciatura</span>
+                  <h3>Ingeniería Industrial con minor en Computer Science</h3>
+                  <p class="timeline-text">
+                    Desarrollé una base en procesos, optimización, lógica, sistemas y pensamiento técnico aplicado a contextos reales.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <span>Proyecto académico</span>
+                  <h3>Tesis en machine learning</h3>
+                  <p class="timeline-text">
+                    Construcción de modelos para identificar predictores demográficos de violencia de género usando datos de encuesta nacional en España.
+                  </p>
+                </div>
+                <div class="timeline-item">
+                  <span>Proyecto académico</span>
+                  <h3>Modelado de riesgo financiero</h3>
+                  <p class="timeline-text">
+                    Cálculo de Value at Risk con múltiples métodos y modelado de riesgos extremos con copulas y teoría de valores extremos.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="contact" class="section">
         <div class="container">
-          <h2 class="section-title">Contact</h2>
+          <h2 class="section-title">Contacto</h2>
           <p class="section-subtitle">
-            The original form would not work by itself, so this version uses direct contact details instead.
+            Si buscas a alguien con capacidad analítica, criterio de negocio y entendimiento técnico para estructurar problemas complejos, conversemos.
           </p>
 
           <div class="contact-grid">
             <div class="card">
               <p class="contact-text">
-                Want to work together? Reach out using the details here and replace
-                them with your real information.
+                Estoy interesada en oportunidades donde pueda conectar datos, procesos, plataformas y estrategia para generar soluciones con impacto real.
               </p>
               <br />
               <ul class="contact-list">
                 <li>
                   <strong>Email</strong>
-                  <a href="mailto:you@example.com">you@example.com</a>
+                  <a href="mailto:michiarias02@gmail.com">michiarias02@gmail.com</a>
                 </li>
                 <li>
                   <strong>LinkedIn</strong>
-                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer">linkedin.com/in/yourusername</a>
+                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer">Agrega aquí tu LinkedIn</a>
                 </li>
                 <li>
                   <strong>GitHub</strong>
-                  <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">github.com/yourusername</a>
+                  <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">Agrega aquí tu GitHub</a>
                 </li>
               </ul>
             </div>
 
             <div class="card">
               <form class="contact-form">
-                <input type="text" placeholder="Michelle Arias" />
-                <input type="email" placeholder="Your email" />
-                <textarea placeholder="Your message"></textarea>
-                <button type="button" class="btn btn-primary">Form UI only</button>
+                <input type="text" placeholder="Nombre" />
+                <input type="email" placeholder="Correo electrónico" />
+                <textarea placeholder="Mensaje"></textarea>
+                <button type="button" class="btn btn-primary">Formulario visual</button>
               </form>
               <p class="contact-note">
-                To make the form actually send messages, connect it to a backend service or a form provider.
+                Este formulario es solo visual. Si quieres que funcione de verdad, hay que conectarlo a un servicio de formularios o a un backend.
               </p>
             </div>
           </div>
@@ -622,8 +690,8 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-row">
-          <p>© 2026 Michelle Arias. All rights reserved.</p>
-          <p>Built as a single-file portfolio template.</p>
+          <p>© 2026 Michelle Arias. Todos los derechos reservados.</p>
+          <p>Portafolio en una sola página, adaptado para presentar una narrativa clara y estratégica.</p>
         </div>
       </div>
     </footer>
