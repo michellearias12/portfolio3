@@ -3,444 +3,629 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>John Sample</title>
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/media.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
+    <title>Your Name | Portfolio</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --bg-soft: #111827;
+        --card: #1e293b;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-dark: #0ea5e9;
+        --border: rgba(148, 163, 184, 0.18);
+        --max-width: 1100px;
+      }
 
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--max-width));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        color: var(--muted);
+        max-width: 700px;
+        margin-bottom: 2rem;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(12px);
+        background: rgba(2, 6, 23, 0.8);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-row {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-list a {
+        color: var(--muted);
+        transition: color 0.2s ease;
+      }
+
+      .nav-list a:hover,
+      .nav-list a:focus {
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 6rem 0 5rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        line-height: 1.05;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 640px;
+        margin-bottom: 1.75rem;
+      }
+
+      .hero-card {
+        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%), var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 2rem;
+        min-height: 340px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+
+      .hero-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-card p {
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-highlights {
+        list-style: none;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .hero-highlights li {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 0.85rem 1rem;
+      }
+
+      .btn-row,
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+
+      .btn-row {
+        margin-bottom: 1.25rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 1.25rem;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #062133;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-dark);
+      }
+
+      .btn-secondary {
+        border-color: var(--border);
+        background: transparent;
+        color: var(--text);
+      }
+
+      .social-links a {
+        padding: 0.6rem 0.95rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--muted);
+      }
+
+      .social-links a:hover {
+        color: var(--text);
+        border-color: rgba(56, 189, 248, 0.45);
+      }
+
+      .about-grid,
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 2rem;
+      }
+
+      .card {
+        background: rgba(15, 23, 42, 0.72);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 1.5rem;
+      }
+
+      .skills {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .skill-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.45rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .skill-bar {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.16);
+        overflow: hidden;
+      }
+
+      .skill-bar span {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), #818cf8);
+      }
+
+      .services-grid,
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+
+      .service-card,
+      .project-card {
+        background: rgba(15, 23, 42, 0.72);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 1.5rem;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .service-card:hover,
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(56, 189, 248, 0.35);
+      }
+
+      .service-card h3,
+      .project-card h3 {
+        margin-bottom: 0.75rem;
+      }
+
+      .service-card p,
+      .project-card p,
+      .contact-text,
+      .about-text {
+        color: var(--muted);
+      }
+
+      .project-tag {
+        display: inline-block;
+        margin: 1rem 0 0.75rem;
+        font-size: 0.85rem;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .project-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .contact-list {
+        list-style: none;
+        display: grid;
+        gap: 1rem;
+        color: var(--muted);
+      }
+
+      .contact-list strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 0.2rem;
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(2, 6, 23, 0.7);
+        color: var(--text);
+        font: inherit;
+      }
+
+      .contact-form textarea {
+        min-height: 180px;
+        resize: vertical;
+      }
+
+      .contact-note {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem 0 2rem;
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .about-grid,
+        .contact-grid,
+        .services-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-row {
+          padding: 0.85rem 0;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-list {
+          gap: 0.8rem;
+        }
+
+        .section {
+          padding: 4rem 0;
+        }
+
+        .hero {
+          padding-top: 4.5rem;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <header id="header" class="header">
-      <div class="container container-lg">
-        <div class="header-nav">
-          <a
-            href="#home"
-            class="logo"
-            data-aos="fade-down"
-            data-aos-duration="1000"
-            >J.Sample</a
-          >
-          <nav id="nav" class="nav">
-            <ul class="nav-list" data-aos="fade-down" data-aos-duration="1000">
-              <li class="nav-item">
-                <a href="#home" class="nav-link active">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="#about" class="nav-link">About</a>
-              </li>
-              <li class="nav-item">
-                <a href="#projects" class="nav-link">Works</a>
-              </li>
-              <li class="nav-item">
-                <a href="#contact" class="nav-link">Contact</a>
-              </li>
+    <header class="header">
+      <div class="container">
+        <div class="header-row">
+          <a href="#home" class="logo">YOUR NAME</a>
+          <nav>
+            <ul class="nav-list">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
-            <button id="nav-btn" class="nav-btn">
-              <img
-                id="nav-btn-img"
-                src="img/icons/open.svg"
-                alt="Navigation button"
-              />
-            </button>
           </nav>
         </div>
       </div>
     </header>
 
-    <section id="home" class="hero">
-      <div class="container container-lg">
-        <div
-          class="hero-row"
-          data-aos="fade-zoom-in"
-          data-aos-easing="ease-in-out"
-          data-aos-delay="500"
-          data-aos-duration="1000"
-        >
-          <div class="hero-content">
-            <span class="hero-greeting"> Hello, I am</span>
-            <h1 class="hero-heading">John Sample</h1>
-            <span class="hero-heading-subtitle"
-              >UI/UX Designer & Software Developer</span
-            >
-            <div class="about-social-list">
-              <div class="social-links-row">
-                <a href="#!">
-                  <img
-                    src="img/social_icons/github.svg"
-                    alt="Link to GitHub account"
-                  />
-                </a>
-
-                <a href="#!">
-                  <img
-                    src="img/social_icons/linkedin.svg"
-                    alt="Link to linkedin profile"
-                  />
-                </a>
-
-                <a href="#!">
-                  <img
-                    src="img/social_icons/xing.svg"
-                    alt="Link to Xing profile"
-                  />
-                </a>
-
-                <a href="#!">
-                  <img
-                    src="img/social_icons/facebook.svg"
-                    alt="Link to facebook profile"
-                /></a>
-                <a href="#!">
-                  <img
-                    src="img/social_icons/instagram.svg"
-                    alt="Link to instagram profile"
-                /></a>
-              </div>
-            </div>
-
+    <main>
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-grid">
             <div>
-              <a href="#projects" class="btn">My Portfolio</a>
-              <a href="#contact" class="btn btn-white">Contact Me</a>
-            </div>
-          </div>
-          <div class="hero-img">
-            <img
-              src="img/hero/hero.png"
-              alt="Picture of Christian Buehner taken from Unsplash</a>
-              "
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+              <span class="eyebrow">Portfolio Template</span>
+              <h1>Designer, developer, and problem solver.</h1>
+              <p>
+                Replace this intro with a short summary about who you are, what you
+                do, and the kind of work you want to attract.
+              </p>
 
-    <section id="about" class="about">
-      <div class="container">
-        <div class="about-title">
-          <h2 class="title">About Me</h2>
-        </div>
-        <div class="about-row">
-          <div
-            class="about-content"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <p class="about-descr">
-              Hi, I’m John Sample, a passionate designer and developer
-              specializing in web development, graphic design and photography.
-              With over 10 years of experience, I love transforming ideas into
-              impactful creations that connect and inspire. Outside of work, I
-              enjoy exploring new places, learning new skills and capturing
-              life’s moments. <br /><br />Let’s collaborate and bring your
-              vision to life!
-            </p>
-            <div class="about-download-btn">
-              <a href="#!" class="btn btn-white">Download CV</a>
-            </div>
-          </div>
-          <div
-            class="about-skills"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="100"
-          >
-            <div class="skill">
-              <div class="skill-title">Web Design</div>
-              <div class="skill-percent">95%</div>
-              <div class="skill-bar__progress">
-                <div class="skill-bar__fill" data-progress="95"></div>
+              <div class="btn-row">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+              </div>
+
+              <div class="social-links">
+                <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="mailto:you@example.com">Email</a>
               </div>
             </div>
-            <div class="skill">
-              <div class="skill-title">HTML/CSS</div>
-              <div class="skill-percent">90%</div>
-              <div class="skill-bar__progress">
-                <div class="skill-bar__fill" data-progress="90"></div>
-              </div>
-            </div>
-            <div class="skill">
-              <div class="skill-title">JavaScript</div>
-              <div class="skill-percent">65%</div>
-              <div class="skill-bar__progress">
-                <div class="skill-bar__fill" data-progress="65"></div>
-              </div>
-            </div>
-            <div class="skill">
-              <div class="skill-title">Photoshop</div>
-              <div class="skill-percent">80%</div>
-              <div class="skill-bar__progress">
-                <div class="skill-bar__fill" data-progress="80"></div>
-              </div>
-            </div>
+
+            <aside class="hero-card">
+              <h2>Quick Snapshot</h2>
+              <p>
+                This block replaces the broken hero image so the page works as a
+                single-file template.
+              </p>
+              <ul class="hero-highlights">
+                <li><strong>Location:</strong> Your City, Country</li>
+                <li><strong>Focus:</strong> Web design, frontend, branding</li>
+                <li><strong>Availability:</strong> Open for freelance or full-time roles</li>
+              </ul>
+            </aside>
           </div>
         </div>
-        <div class="services-row">
-          <div
-            class="service-card"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="50"
-          >
-            <img class="service-card-img" src="img/services/01.svg" alt="" />
-            <h3 class="service-card-title">UI/UX Design</h3>
-            <p>
-              Crafting intuitive and visually appealing user interfaces that
-              enhance experiences through thoughtful, creative designs.
-            </p>
-          </div>
+      </section>
 
-          <div
-            class="service-card"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-          >
-            <img class="service-card-img" src="img/services/02.svg" alt="" />
-            <h3 class="service-card-title">Frontend Development</h3>
-            <p>
-              Developing responsive, accessible, and dynamic websites using
-              modern tools to create seamless, engaging experiences.
-            </p>
-          </div>
-
-          <div
-            class="service-card"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="500"
-          >
-            <img class="service-card-img" src="img/services/03.svg" alt="" />
-            <h3 class="service-card-title">Content Writing</h3>
-            <p>
-              Creating compelling and audience-focused content that effectively
-              communicates ideas and delivers meaningful value.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="projects">
-      <div class="container container-lg">
-        <div class="projects-title">
-          <h2 class="title">Works</h2>
-        </div>
-
-        <div class="projects-row">
-          <div
-            class="project-box"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-duration="1000"
-          >
-            <a href="#!">
-              <img class="project-img" src="img/works/01.jpg" alt="" />
-              <div class="project-mask">
-                <div class="project-caption">
-                  <h5 class="white">Finance Dashboard</h5>
-                  <p class="white">UI/UX Design</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="project-box"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-delay="300"
-            data-aos-duration="1000"
-          >
-            <a href="#!">
-              <img class="project-img" src="img/works/02.jpg" alt="" />
-              <div class="project-mask">
-                <div class="project-caption">
-                  <h5 class="white">Product design</h5>
-                  <p class="white">UI/UX Design</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="project-box"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-delay="600"
-            data-aos-duration="1000"
-          >
-            <a href="#!">
-              <img class="project-img" src="img/works/03.jpg" alt="" />
-              <div class="project-mask">
-                <div class="project-caption">
-                  <h5 class="white">Landing Page</h5>
-                  <p class="white">UI/UX Design, Web Development</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="project-box"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-delay="900"
-            data-aos-duration="1000"
-          >
-            <a href="#!">
-              <img class="project-img" src="img/works/04.jpg" alt="" />
-              <div class="project-mask">
-                <div class="project-caption">
-                  <h5 class="white">Portfolio</h5>
-                  <p class="white">Web Development</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="project-box"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-delay="1200"
-            data-aos-duration="1000"
-          >
-            <a href="#!">
-              <img class="project-img" src="img/works/05.jpg" alt="" />
-              <div class="project-mask">
-                <div class="project-caption">
-                  <h5 class="white">Cosmic Sea</h5>
-                  <p class="white">UI/UX Design, Web Development</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="project-box"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-delay="1500"
-            data-aos-duration="1000"
-          >
-            <a href="#!">
-              <img class="project-img" src="img/works/06.jpg" alt="" />
-              <div class="project-mask">
-                <div class="project-caption">
-                  <h5 class="white">eCommerce</h5>
-                  <p class="white">Web Development</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="contact-title">
-          <h2 class="title">Contact</h2>
-        </div>
-        <div class="contact-content">
-          <p>
-            Tell me about your project.
-            <br />
-            Let's talk and work together!
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">
+            Use this section to explain your background, strengths, and the value you bring.
           </p>
+
+          <div class="about-grid">
+            <div class="card">
+              <p class="about-text">
+                I help businesses and individuals create clean, effective digital
+                experiences. My work combines thoughtful design, solid development,
+                and a focus on usability.
+              </p>
+              <br />
+              <p class="about-text">
+                Add your story here: your experience, tools, industries, and the kinds
+                of projects you enjoy most.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="skills">
+                <div>
+                  <div class="skill-label"><span>UI / UX Design</span><span>90%</span></div>
+                  <div class="skill-bar"><span style="width: 90%"></span></div>
+                </div>
+                <div>
+                  <div class="skill-label"><span>HTML / CSS</span><span>95%</span></div>
+                  <div class="skill-bar"><span style="width: 95%"></span></div>
+                </div>
+                <div>
+                  <div class="skill-label"><span>JavaScript</span><span>80%</span></div>
+                  <div class="skill-bar"><span style="width: 80%"></span></div>
+                </div>
+                <div>
+                  <div class="skill-label"><span>Brand Strategy</span><span>75%</span></div>
+                  <div class="skill-bar"><span style="width: 75%"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <form class="contactForm" data-aos="zoom-in" data-aos-duration="1000">
-          <div class="input-box">
-            <input type="text" name="name" placeholder="Name" required />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              required
-            />
-          </div>
+      <section id="services" class="section">
+        <div class="container">
+          <h2 class="section-title">Services</h2>
+          <p class="section-subtitle">
+            Replace these with the services you actually offer.
+          </p>
 
-          <textarea
-            name="message"
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="Your Message"
-            required
-          ></textarea>
-          <div
-            class="contact-button"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-out"
-            data-aos-delay="500"
-            data-aos-duration="1000"
-          >
-            <button href="#!" class="btn btn-red" name="submit" type="submit">
-              Send Message
-            </button>
+          <div class="services-grid">
+            <article class="service-card">
+              <h3>Web Design</h3>
+              <p>
+                Landing pages, personal brands, and marketing sites with a clean,
+                modern look.
+              </p>
+            </article>
+            <article class="service-card">
+              <h3>Frontend Development</h3>
+              <p>
+                Responsive, accessible interfaces built with maintainable HTML, CSS,
+                and JavaScript.
+              </p>
+            </article>
+            <article class="service-card">
+              <h3>Creative Direction</h3>
+              <p>
+                Visual systems, content structure, and design decisions aligned with
+                your goals.
+              </p>
+            </article>
           </div>
-        </form>
-        <div class="response"></div>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">
+            These cards replace the original image-based portfolio items so the page works without extra assets.
+          </p>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <span class="project-tag">UI / UX</span>
+              <h3>Finance Dashboard</h3>
+              <p>
+                Briefly describe the challenge, your contribution, and the outcome.
+              </p>
+              <a class="project-link" href="#">Project link</a>
+            </article>
+            <article class="project-card">
+              <span class="project-tag">Branding</span>
+              <h3>Product Launch Site</h3>
+              <p>
+                Add a few lines about what you designed or built and the results.
+              </p>
+              <a class="project-link" href="#">Project link</a>
+            </article>
+            <article class="project-card">
+              <span class="project-tag">Development</span>
+              <h3>Portfolio Website</h3>
+              <p>
+                Showcase a website, app, redesign, or case study with a concise summary.
+              </p>
+              <a class="project-link" href="#">Project link</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">
+            The original form would not work by itself, so this version uses direct contact details instead.
+          </p>
+
+          <div class="contact-grid">
+            <div class="card">
+              <p class="contact-text">
+                Want to work together? Reach out using the details here and replace
+                them with your real information.
+              </p>
+              <br />
+              <ul class="contact-list">
+                <li>
+                  <strong>Email</strong>
+                  <a href="mailto:you@example.com">you@example.com</a>
+                </li>
+                <li>
+                  <strong>LinkedIn</strong>
+                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer">linkedin.com/in/yourusername</a>
+                </li>
+                <li>
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">github.com/yourusername</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <form class="contact-form">
+                <input type="text" placeholder="Your name" />
+                <input type="email" placeholder="Your email" />
+                <textarea placeholder="Your message"></textarea>
+                <button type="button" class="btn btn-primary">Form UI only</button>
+              </form>
+              <p class="contact-note">
+                To make the form actually send messages, connect it to a backend service or a form provider.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
       <div class="container">
         <div class="footer-row">
-          <div class="social-links-row footer-social">
-            <a href="#!">
-              <img
-                src="img/social_icons/github.svg"
-                alt="Link to GitHub account"
-              />
-            </a>
-
-            <a href="#!">
-              <img
-                src="img/social_icons/linkedin.svg"
-                alt="Link to linkedin profile"
-              />
-            </a>
-
-            <a href="#!">
-              <img src="img/social_icons/xing.svg" alt="Link to Xing profile" />
-            </a>
-
-            <a href="#!">
-              <img
-                src="img/social_icons/facebook.svg"
-                alt="Link to facebook profile"
-            /></a>
-
-            <a href="#!">
-              <img
-                src="img/social_icons/instagram.svg"
-                alt="Link to instagram profile"
-            /></a>
-          </div>
-
-          <div class="footer-copyright">
-            <p>&copy; Copyright John Sample 2024</p>
-          </div>
+          <p>© 2026 Your Name. All rights reserved.</p>
+          <p>Built as a single-file portfolio template.</p>
         </div>
       </div>
     </footer>
-
-    <div id="goToTop" class="goToTop">
-      <a href="#home">
-        <img src="img/icons/arrow_up.svg" alt="Back to top"
-      /></a>
-    </div>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script type="module" src="js/main.js"></script>
   </body>
 </html>
