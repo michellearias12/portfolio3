@@ -4,17 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Michelle Arias | Portafolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       :root {
-        --bg: #0f172a;
-        --bg-soft: #111827;
-        --card: #1e293b;
-        --text: #e5e7eb;
-        --muted: #94a3b8;
-        --accent: #38bdf8;
-        --accent-dark: #0ea5e9;
-        --border: rgba(148, 163, 184, 0.18);
-        --max-width: 1100px;
+        --bg: #F8FAFC;
+        --bg-soft: #F1F5F9;
+        --card: #FFFFFF;
+        --text: #0F172A;
+        --muted: #64748B;
+        --accent: #2563EB;
+        --accent-green: #0F766E;
+        --accent-soft: #DBEAFE;
+        --border: #E2E8F0;
+        --max-width: 1140px;
+        --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.05);
+        --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.06);
       }
 
       * {
@@ -28,10 +40,12 @@
       }
 
       body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
         color: var(--text);
-        line-height: 1.6;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
 
       a {
@@ -45,31 +59,45 @@
       }
 
       .section {
-        padding: 5rem 0;
+        padding: 7rem 0;
       }
 
       .section-title {
-        font-size: 2rem;
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2.2rem, 4vw, 3.3rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
         margin-bottom: 1rem;
       }
 
       .section-subtitle {
         color: var(--muted);
         max-width: 760px;
-        margin-bottom: 2rem;
+        margin-bottom: 2.2rem;
+        font-size: 1.05rem;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
       }
 
       .header {
         position: sticky;
         top: 0;
         z-index: 1000;
-        backdrop-filter: blur(12px);
-        background: rgba(2, 6, 23, 0.8);
-        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(14px);
+        background: rgba(248, 250, 252, 0.86);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.85);
       }
 
       .header-row {
-        min-height: 72px;
+        min-height: 78px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -77,9 +105,9 @@
       }
 
       .logo {
-        font-size: 1.2rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
+        font-family: "DM Serif Display", serif;
+        font-size: 1.55rem;
+        letter-spacing: -0.02em;
       }
 
       .nav-list {
@@ -92,6 +120,8 @@
       .nav-list a {
         color: var(--muted);
         transition: color 0.2s ease;
+        font-weight: 600;
+        font-size: 0.96rem;
       }
 
       .nav-list a:hover,
@@ -100,71 +130,71 @@
       }
 
       .hero {
-        padding: 6rem 0 5rem;
+        padding: 8rem 0 6.5rem;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.25fr 0.95fr;
-        gap: 2rem;
+        grid-template-columns: 1.2fr 0.85fr;
+        gap: 3rem;
         align-items: center;
       }
 
-      .eyebrow {
-        display: inline-block;
-        color: var(--accent);
-        margin-bottom: 1rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-      }
-
       .hero h1 {
-        font-size: clamp(2.4rem, 6vw, 4.3rem);
-        line-height: 1.05;
-        margin-bottom: 1rem;
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(3rem, 6vw, 5.1rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        margin-bottom: 1.25rem;
+        max-width: 10ch;
       }
 
       .hero p {
         color: var(--muted);
-        font-size: 1.05rem;
+        font-size: 1.08rem;
         max-width: 680px;
-        margin-bottom: 1.75rem;
+        margin-bottom: 2rem;
       }
 
       .hero-card {
-        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%), var(--card);
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
         border: 1px solid var(--border);
-        border-radius: 24px;
+        border-radius: 28px;
         padding: 2rem;
-        min-height: 340px;
+        min-height: 360px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        box-shadow: var(--shadow-card);
       }
 
       .hero-card h2 {
-        font-size: 1.45rem;
-        margin-bottom: 0.75rem;
+        font-family: "DM Serif Display", serif;
+        font-size: 2rem;
+        line-height: 1.05;
+        margin-bottom: 0.8rem;
       }
 
       .hero-card p {
-        margin-bottom: 1.25rem;
+        margin-bottom: 1.2rem;
       }
 
       .hero-highlights {
         list-style: none;
         display: grid;
-        gap: 0.75rem;
+        gap: 0.8rem;
       }
 
       .hero-highlights li {
-        background: rgba(15, 23, 42, 0.75);
+        background: #ffffff;
         border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 0.85rem 1rem;
+        border-radius: 16px;
+        padding: 0.9rem 1rem;
+        color: var(--muted);
+      }
+
+      .hero-highlights strong {
+        color: var(--text);
       }
 
       .btn-row,
@@ -182,11 +212,11 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0.9rem 1.25rem;
+        padding: 0.95rem 1.3rem;
         border-radius: 999px;
         font-weight: 700;
         border: 1px solid transparent;
-        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         cursor: pointer;
       }
 
@@ -196,63 +226,71 @@
 
       .btn-primary {
         background: var(--accent);
-        color: #062133;
+        color: #ffffff;
       }
 
       .btn-primary:hover {
-        background: var(--accent-dark);
+        background: #1d4ed8;
       }
 
       .btn-secondary {
         border-color: var(--border);
-        background: transparent;
+        background: #ffffff;
         color: var(--text);
       }
 
+      .btn-secondary:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
       .social-links a {
-        padding: 0.6rem 0.95rem;
+        padding: 0.7rem 1rem;
         border: 1px solid var(--border);
         border-radius: 999px;
         color: var(--muted);
+        background: #ffffff;
       }
 
       .social-links a:hover {
         color: var(--text);
-        border-color: rgba(56, 189, 248, 0.45);
+        border-color: var(--accent);
       }
 
       .about-grid,
       .contact-grid {
         display: grid;
-        grid-template-columns: 1.15fr 0.95fr;
+        grid-template-columns: 1.12fr 0.88fr;
         gap: 2rem;
       }
 
       .card {
-        background: rgba(15, 23, 42, 0.72);
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 22px;
-        padding: 1.5rem;
+        border-radius: 24px;
+        padding: 1.8rem;
+        box-shadow: var(--shadow-soft);
       }
 
       .skills {
         display: grid;
-        gap: 1rem;
+        gap: 1.2rem;
       }
 
       .skill-label {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.45rem;
+        margin-bottom: 0.5rem;
         color: var(--muted);
         font-size: 0.95rem;
+        font-weight: 600;
       }
 
       .skill-bar {
         width: 100%;
         height: 10px;
         border-radius: 999px;
-        background: rgba(148, 163, 184, 0.16);
+        background: #EAF0F6;
         overflow: hidden;
       }
 
@@ -260,7 +298,7 @@
         display: block;
         height: 100%;
         border-radius: 999px;
-        background: linear-gradient(90deg, var(--accent), #818cf8);
+        background: linear-gradient(90deg, var(--accent), var(--accent-green));
       }
 
       .services-grid,
@@ -268,30 +306,36 @@
       .projects-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
+        gap: 1.35rem;
       }
 
       .service-card,
       .experience-card,
       .project-card {
-        background: rgba(15, 23, 42, 0.72);
+        background: #ffffff;
         border: 1px solid var(--border);
-        border-radius: 22px;
-        padding: 1.5rem;
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        border-radius: 24px;
+        padding: 1.6rem;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: var(--shadow-soft);
       }
 
       .service-card:hover,
       .experience-card:hover,
       .project-card:hover {
         transform: translateY(-4px);
-        border-color: rgba(56, 189, 248, 0.35);
+        border-color: #c7d8f9;
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.08);
       }
 
       .service-card h3,
       .experience-card h3,
       .project-card h3 {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.45rem;
+        line-height: 1.1;
         margin-bottom: 0.75rem;
+        letter-spacing: -0.02em;
       }
 
       .service-card p,
@@ -314,10 +358,10 @@
       }
 
       .tab-btn {
-        background: transparent;
+        background: #ffffff;
         border: 1px solid var(--border);
         color: var(--muted);
-        padding: 0.7rem 1rem;
+        padding: 0.75rem 1rem;
         border-radius: 999px;
         font: inherit;
         font-weight: 700;
@@ -327,15 +371,15 @@
 
       .tab-btn:hover,
       .tab-btn.active {
-        color: var(--text);
-        border-color: rgba(56, 189, 248, 0.45);
-        background: rgba(56, 189, 248, 0.08);
+        color: var(--accent);
+        border-color: #bfd3fb;
+        background: var(--accent-soft);
       }
 
       .project-card {
         display: flex;
         flex-direction: column;
-        gap: 0.85rem;
+        gap: 0.95rem;
       }
 
       .project-top {
@@ -347,11 +391,11 @@
 
       .project-tag {
         display: inline-block;
-        font-size: 0.78rem;
-        color: var(--accent);
-        font-weight: 700;
+        font-size: 0.76rem;
+        color: var(--accent-green);
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.09em;
       }
 
       .project-number {
@@ -361,20 +405,39 @@
         border-radius: 999px;
         padding: 0.35rem 0.65rem;
         white-space: nowrap;
+        background: var(--bg-soft);
       }
 
       .project-image {
         width: 100%;
-        min-height: 160px;
+        min-height: 170px;
         border-radius: 18px;
-        border: 1px dashed rgba(148, 163, 184, 0.28);
-        background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(129, 140, 248, 0.08));
+        border: 1px dashed #cbd5e1;
+        background: linear-gradient(135deg, #f8fbff, #eef6ff);
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: var(--muted);
         padding: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .project-meta {
+        font-size: 0.95rem;
+      }
+
+      .project-block {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .project-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        color: var(--text);
       }
 
       .project-stack {
@@ -386,23 +449,24 @@
         flex-wrap: wrap;
         gap: 0.75rem;
         margin-top: auto;
-        padding-top: 0.25rem;
+        padding-top: 0.3rem;
       }
 
       .project-link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0.7rem 1rem;
+        padding: 0.75rem 1rem;
         border-radius: 999px;
         border: 1px solid var(--border);
         font-weight: 700;
         transition: 0.2s ease;
+        background: #ffffff;
       }
 
       .project-link:hover {
-        border-color: rgba(56, 189, 248, 0.45);
-        color: var(--text);
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
       .project-card.hidden {
@@ -411,23 +475,26 @@
 
       .timeline {
         display: grid;
-        gap: 1rem;
+        gap: 1.2rem;
       }
 
       .timeline-item {
-        padding: 1rem 1rem 0;
-        border-left: 2px solid rgba(56, 189, 248, 0.35);
+        padding-left: 1rem;
+        border-left: 2px solid #dbeafe;
       }
 
       .timeline-item h3 {
-        font-size: 1rem;
-        margin-bottom: 0.3rem;
+        font-family: "DM Serif Display", serif;
+        font-size: 1.25rem;
+        margin-bottom: 0.2rem;
       }
 
       .timeline-item span {
         color: var(--accent);
-        font-size: 0.9rem;
-        font-weight: 700;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
       }
 
       .contact-list {
@@ -452,9 +519,9 @@
       .contact-form textarea {
         width: 100%;
         padding: 1rem;
-        border-radius: 14px;
+        border-radius: 16px;
         border: 1px solid var(--border);
-        background: rgba(2, 6, 23, 0.7);
+        background: #ffffff;
         color: var(--text);
         font: inherit;
       }
@@ -464,6 +531,13 @@
         resize: vertical;
       }
 
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: #b8cdfa;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+      }
+
       .contact-note {
         color: var(--muted);
         font-size: 0.95rem;
@@ -471,7 +545,8 @@
 
       .footer {
         border-top: 1px solid var(--border);
-        padding: 1.5rem 0 2rem;
+        padding: 2rem 0 2.5rem;
+        background: transparent;
       }
 
       .footer-row {
@@ -480,9 +555,10 @@
         gap: 1rem;
         flex-wrap: wrap;
         color: var(--muted);
+        font-size: 0.95rem;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: 980px) {
         .hero-grid,
         .about-grid,
         .contact-grid,
@@ -491,25 +567,29 @@
         .projects-grid {
           grid-template-columns: 1fr;
         }
+
+        .hero h1 {
+          max-width: 100%;
+        }
       }
 
       @media (max-width: 640px) {
         .header-row {
-          padding: 0.85rem 0;
+          padding: 1rem 0;
           align-items: flex-start;
           flex-direction: column;
         }
 
         .nav-list {
-          gap: 0.8rem;
+          gap: 0.85rem;
         }
 
         .section {
-          padding: 4rem 0;
+          padding: 4.5rem 0;
         }
 
         .hero {
-          padding-top: 4.5rem;
+          padding-top: 5.5rem;
         }
 
         .project-top {
@@ -657,12 +737,11 @@
         </div>
       </section>
 
-      <!-- NUEVA SECCIÓN DE PROYECTOS -->
       <section id="portfolio" class="section">
         <div class="container">
           <h2 class="section-title">Proyectos</h2>
           <p class="section-subtitle">
-            Esta sección está pensada como plantilla para mostrar hasta 9 proyectos. Puedes cambiar categorías, imágenes, descripciones, stack, resultados y enlaces.
+            Esta sección está pensada como plantilla para mostrar hasta 9 proyectos. Puedes cambiar categorías, imágenes, textos, resultados y enlaces.
           </p>
 
           <div class="project-toolbar">
@@ -673,7 +752,6 @@
           </div>
 
           <div class="projects-grid">
-            <!-- PROYECTO 1 -->
             <article class="project-card" data-category="datos">
               <div class="project-top">
                 <span class="project-tag">Datos</span>
@@ -682,17 +760,30 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 1</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Describe aquí el problema, el contexto y qué resolviste. Ejemplo: diseño de dashboard, análisis exploratorio, automatización de métricas o modelo analítico.
-              </p>
+
+              <div class="project-block">
+                <span class="project-label">Problema</span>
+                <p class="project-description">Explica el reto o necesidad que existía antes del proyecto.</p>
+              </div>
+
+              <div class="project-block">
+                <span class="project-label">Solución</span>
+                <p class="project-description">Describe qué construiste, analizaste o diseñaste para resolverlo.</p>
+              </div>
+
+              <div class="project-block">
+                <span class="project-label">Impacto</span>
+                <p class="project-description">Resume el resultado, mejora o aprendizaje clave generado.</p>
+              </div>
+
               <p class="project-stack"><strong>Herramientas:</strong> Excel, SQL, Power BI, Python, Tableau, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Caso de estudio</a>
               </div>
             </article>
 
-            <!-- PROYECTO 2 -->
             <article class="project-card" data-category="transformacion">
               <div class="project-top">
                 <span class="project-tag">Transformación digital</span>
@@ -701,17 +792,30 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 2</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Resume el objetivo del proyecto, la lógica funcional, el rediseño de procesos o la mejora de plataforma que lideraste o apoyaste.
-              </p>
-              <p class="project-stack"><strong>Herramientas:</strong> Salesforce, Miro, Notion, Jira, Power BI, etc.</p>
+
+              <div class="project-block">
+                <span class="project-label">Problema</span>
+                <p class="project-description">Qué proceso, flujo o sistema necesitaba mejorar.</p>
+              </div>
+
+              <div class="project-block">
+                <span class="project-label">Solución</span>
+                <p class="project-description">Cómo estructuraste la lógica funcional, automatización o rediseño.</p>
+              </div>
+
+              <div class="project-block">
+                <span class="project-label">Impacto</span>
+                <p class="project-description">Qué eficiencia, claridad o mejora operativa se obtuvo.</p>
+              </div>
+
+              <p class="project-stack"><strong>Herramientas:</strong> Salesforce, Miro, Jira, Notion, Power BI, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Detalle</a>
               </div>
             </article>
 
-            <!-- PROYECTO 3 -->
             <article class="project-card" data-category="estrategia">
               <div class="project-top">
                 <span class="project-tag">Estrategia</span>
@@ -720,17 +824,30 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 3</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Explica qué decisión estratégica apoyaste, qué análisis realizaste y cuál fue el impacto o entregable final.
-              </p>
-              <p class="project-stack"><strong>Herramientas:</strong> Excel, PowerPoint, análisis financiero, modelado, etc.</p>
+
+              <div class="project-block">
+                <span class="project-label">Problema</span>
+                <p class="project-description">Qué decisión estratégica requería análisis y estructura.</p>
+              </div>
+
+              <div class="project-block">
+                <span class="project-label">Solución</span>
+                <p class="project-description">Qué análisis, framework o modelo utilizaste.</p>
+              </div>
+
+              <div class="project-block">
+                <span class="project-label">Impacto</span>
+                <p class="project-description">Qué recomendación o resultado permitió el trabajo.</p>
+              </div>
+
+              <p class="project-stack"><strong>Herramientas:</strong> Excel, PowerPoint, modelado, análisis financiero, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Resultados</a>
               </div>
             </article>
 
-            <!-- PROYECTO 4 -->
             <article class="project-card" data-category="datos">
               <div class="project-top">
                 <span class="project-tag">Datos</span>
@@ -739,17 +856,19 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 4</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Sustituye este texto por una descripción concreta del proyecto, los datos utilizados y el valor generado.
-              </p>
-              <p class="project-stack"><strong>Herramientas:</strong> Python, pandas, visualización, reporting, etc.</p>
+
+              <div class="project-block"><span class="project-label">Problema</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Solución</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Impacto</span><p class="project-description">Texto plantilla.</p></div>
+
+              <p class="project-stack"><strong>Herramientas:</strong> Python, visualización, reporting, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Repositorio</a>
               </div>
             </article>
 
-            <!-- PROYECTO 5 -->
             <article class="project-card" data-category="transformacion">
               <div class="project-top">
                 <span class="project-tag">Transformación digital</span>
@@ -758,17 +877,19 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 5</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Puedes usar este bloque para mostrar automatizaciones, mejoras de producto, arquitectura funcional o implementación de procesos.
-              </p>
+
+              <div class="project-block"><span class="project-label">Problema</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Solución</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Impacto</span><p class="project-description">Texto plantilla.</p></div>
+
               <p class="project-stack"><strong>Herramientas:</strong> CRM, BPM, documentación funcional, IA, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Más info</a>
               </div>
             </article>
 
-            <!-- PROYECTO 6 -->
             <article class="project-card" data-category="estrategia">
               <div class="project-top">
                 <span class="project-tag">Estrategia</span>
@@ -777,17 +898,19 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 6</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Incluye aquí una síntesis del reto estratégico, tu enfoque analítico y las recomendaciones o decisiones que surgieron.
-              </p>
-              <p class="project-stack"><strong>Herramientas:</strong> Análisis de negocio, métricas, forecast, presentaciones, etc.</p>
+
+              <div class="project-block"><span class="project-label">Problema</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Solución</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Impacto</span><p class="project-description">Texto plantilla.</p></div>
+
+              <p class="project-stack"><strong>Herramientas:</strong> negocio, métricas, forecast, presentaciones, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Caso completo</a>
               </div>
             </article>
 
-            <!-- PROYECTO 7 -->
             <article class="project-card" data-category="datos">
               <div class="project-top">
                 <span class="project-tag">Datos</span>
@@ -796,17 +919,19 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 7</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Ideal para mostrar un modelo, una investigación, una tesis o un proyecto donde hayas trabajado con análisis estadístico o machine learning.
-              </p>
+
+              <div class="project-block"><span class="project-label">Problema</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Solución</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Impacto</span><p class="project-description">Texto plantilla.</p></div>
+
               <p class="project-stack"><strong>Herramientas:</strong> R, Python, estadística, machine learning, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Metodología</a>
               </div>
             </article>
 
-            <!-- PROYECTO 8 -->
             <article class="project-card" data-category="transformacion">
               <div class="project-top">
                 <span class="project-tag">Transformación digital</span>
@@ -815,17 +940,19 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 8</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Puedes presentar aquí una implementación digital, una optimización de flujo de trabajo o una mejora operativa con soporte tecnológico.
-              </p>
-              <p class="project-stack"><strong>Herramientas:</strong> Automatización, dashboards, procesos, sistemas, etc.</p>
+
+              <div class="project-block"><span class="project-label">Problema</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Solución</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Impacto</span><p class="project-description">Texto plantilla.</p></div>
+
+              <p class="project-stack"><strong>Herramientas:</strong> automatización, dashboards, procesos, sistemas, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Demo</a>
               </div>
             </article>
 
-            <!-- PROYECTO 9 -->
             <article class="project-card" data-category="estrategia">
               <div class="project-top">
                 <span class="project-tag">Estrategia</span>
@@ -834,10 +961,13 @@
               <div class="project-image">Espacio para imagen, mockup o screenshot del proyecto</div>
               <h3>Nombre del proyecto 9</h3>
               <p class="project-meta">Cliente / Empresa / Proyecto personal · Año</p>
-              <p class="project-description">
-                Último espacio de plantilla para incluir un proyecto orientado a análisis estratégico, inversión, evaluación de desempeño o toma de decisiones.
-              </p>
-              <p class="project-stack"><strong>Herramientas:</strong> Excel, storytelling, análisis, research, etc.</p>
+
+              <div class="project-block"><span class="project-label">Problema</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Solución</span><p class="project-description">Texto plantilla.</p></div>
+              <div class="project-block"><span class="project-label">Impacto</span><p class="project-description">Texto plantilla.</p></div>
+
+              <p class="project-stack"><strong>Herramientas:</strong> storytelling, research, análisis, etc.</p>
+
               <div class="project-links">
                 <a href="#" class="project-link">Ver proyecto</a>
                 <a href="#" class="project-link">Presentación</a>
@@ -981,7 +1111,7 @@
       <div class="container">
         <div class="footer-row">
           <p>© 2026 Michelle Arias. Todos los derechos reservados.</p>
-          <p>Portafolio en una sola página, adaptado para presentar una narrativa clara y estratégica.</p>
+          <p>Portafolio en una sola página, con estética minimal premium y narrativa estratégica.</p>
         </div>
       </div>
     </footer>
