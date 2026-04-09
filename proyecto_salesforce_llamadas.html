@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto | Módulo de llamadas salientes en Salesforce</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --bg-soft: #111827;
+        --panel: rgba(15, 23, 42, 0.86);
+        --card: #162033;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-2: #818cf8;
+        --border: rgba(148, 163, 184, 0.16);
+        --success: #34d399;
+        --max-width: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--max-width));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.84rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(2, 6, 23, 0.75);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-row {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-list a {
+        color: var(--muted);
+      }
+
+      .nav-list a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 5.5rem 0 4rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.9fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+        line-height: 1.05;
+        margin-bottom: 1rem;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.08rem;
+        max-width: 720px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #062133;
+      }
+
+      .btn-secondary {
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .hero-card,
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 1.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-card {
+        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 58%), var(--panel);
+      }
+
+      .hero-card h2,
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .hero-list,
+      .bullet-list,
+      .metric-list {
+        list-style: none;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .hero-list li,
+      .metric-list li {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 0.9rem 1rem;
+      }
+
+      .hero-list strong,
+      .metric-list strong {
+        color: var(--text);
+      }
+
+      .section-header {
+        margin-bottom: 2rem;
+      }
+
+      .section-subtitle,
+      .muted,
+      .bullet-list li,
+      .step p,
+      .project-text,
+      .quote {
+        color: var(--muted);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1.4rem;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+
+      .mini-tag {
+        display: inline-block;
+        margin-bottom: 0.8rem;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.82rem;
+      }
+
+      .problem-box {
+        border-left: 3px solid rgba(56, 189, 248, 0.45);
+        padding-left: 1rem;
+      }
+
+      .steps {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .step {
+        padding: 1rem 1rem 0;
+        border-left: 2px solid rgba(129, 140, 248, 0.45);
+      }
+
+      .step h3 {
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+      }
+
+      .feature-card,
+      .result-card {
+        background: rgba(15, 23, 42, 0.76);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 1.35rem;
+      }
+
+      .feature-card h3,
+      .result-card h3 {
+        margin-bottom: 0.7rem;
+        font-size: 1.05rem;
+      }
+
+      .result-card strong {
+        color: var(--success);
+      }
+
+      .quote {
+        font-size: 1.02rem;
+      }
+
+      .mockup {
+        min-height: 220px;
+        border-radius: 20px;
+        border: 1px dashed rgba(56, 189, 248, 0.35);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.92));
+        padding: 1rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .mockup-bar,
+      .mockup-pill,
+      .mockup-line {
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.15);
+      }
+
+      .mockup-bar {
+        height: 14px;
+        width: 44%;
+      }
+
+      .mockup-line {
+        height: 10px;
+        width: 100%;
+      }
+
+      .mockup-line.short {
+        width: 62%;
+      }
+
+      .mockup-pills {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .mockup-pill {
+        height: 34px;
+        width: 120px;
+      }
+
+      .mockup-panel {
+        flex: 1;
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        padding: 1rem;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 1.6rem 0 2rem;
+        color: var(--muted);
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-row {
+          padding: 0.9rem 0;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .hero {
+          padding-top: 4.5rem;
+        }
+
+        .section {
+          padding: 3.6rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-row">
+          <a href="#inicio" class="logo">Michelle Arias · Caso de proyecto</a>
+          <nav>
+            <ul class="nav-list">
+              <li><a href="#resumen">Resumen</a></li>
+              <li><a href="#problema">Problema</a></li>
+              <li><a href="#rol">Rol</a></li>
+              <li><a href="#solucion">Solución</a></li>
+              <li><a href="#impacto">Impacto</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" id="resumen">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <span class="eyebrow">Caso de proyecto · Salesforce</span>
+              <h1>Módulo de gestión y codificación de llamadas salientes</h1>
+              <p class="lead">
+                Diseñé y especifiqué un módulo integral en Salesforce para que los operadores pudieran iniciar,
+                clasificar y cerrar llamadas salientes con mayor eficiencia, trazabilidad completa y reglas claras de cumplimiento.
+              </p>
+              <div class="hero-actions">
+                <a href="#solucion" class="btn btn-primary">Ver solución</a>
+                <a href="#impacto" class="btn btn-secondary">Ver impacto</a>
+              </div>
+            </div>
+
+            <aside class="hero-card">
+              <h2>Resumen ejecutivo</h2>
+              <ul class="hero-list">
+                <li><strong>Rol:</strong> Business Analyst / Diseñadora de procesos</li>
+                <li><strong>Contexto:</strong> Operación de llamadas salientes dentro de Salesforce</li>
+                <li><strong>Enfoque:</strong> lógica de negocio, experiencia de usuario, trazabilidad y calidad de datos</li>
+                <li><strong>Resultado:</strong> un flujo más guiado, consistente y auditable de punta a punta</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="problema">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">El problema</span>
+            <h2 class="section-title">Una operación manual, inconsistente y difícil de auditar</h2>
+            <p class="section-subtitle">
+              El proceso de llamadas salientes dependía demasiado de entradas manuales, dejaba espacio para errores y hacía difícil seguir el contexto completo de cada interacción.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card problem-box">
+              <p class="quote">
+                Los operadores tenían que llenar demasiada información a mano, la codificación no siempre era consistente,
+                y muchas veces no quedaba claro quién llamó, desde qué contexto, por qué motivo y si la llamada había sido realmente exitosa.
+              </p>
+            </div>
+            <div class="card">
+              <ul class="bullet-list">
+                <li>Demasiados campos manuales y riesgo alto de errores.</li>
+                <li>Falta de estandarización para clasificar llamadas.</li>
+                <li>Poca trazabilidad entre llamadas, tareas, casos y órdenes de trabajo.</li>
+                <li>Dificultad para controlar cumplimiento y calidad de datos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="rol">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Mi rol</span>
+            <h2 class="section-title">Traducir un problema operativo en una lógica clara de sistema</h2>
+            <p class="section-subtitle">
+              Mi trabajo no fue solo documentar requerimientos. Diseñé la lógica funcional completa para que el módulo guiara al usuario, redujera errores y dejara un rastro auditable.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="steps">
+                <div class="step">
+                  <h3>1. Mapeo de procesos</h3>
+                  <p>
+                    Identifiqué todos los posibles orígenes de una llamada saliente: perfil de usuario, caso, tarea,
+                    orden de trabajo, contacto de negocio y otros puntos de entrada dentro de Salesforce.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>2. Diseño de lógica de negocio</h3>
+                  <p>
+                    Definí reglas de autocompletado, herencia de datos, validaciones, dependencias y vínculos entre objetos para asegurar trazabilidad y consistencia.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>3. Especificación funcional</h3>
+                  <p>
+                    Estructuré permisos, visibilidad, reglas de cierre y criterios para determinar si una comunicación había sido exitosa o fallida.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="mini-tag">Cómo aporté valor</span>
+              <ul class="metric-list">
+                <li><strong>Diseño orientado al usuario:</strong> el flujo guía al operador paso a paso.</li>
+                <li><strong>Lógica estructurada:</strong> menos ambigüedad, menos errores, más consistencia.</li>
+                <li><strong>Visión transversal:</strong> conecté operación, procesos, datos y cumplimiento.</li>
+                <li><strong>Pensamiento de sistema:</strong> cada llamada quedó integrada al contexto correcto.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="solucion">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">La solución</span>
+            <h2 class="section-title">Un módulo que ordena, guía y registra todo el ciclo de la llamada</h2>
+            <p class="section-subtitle">
+              La solución convierte un proceso disperso en un flujo operativo más claro: desde el origen de la llamada hasta su cierre, con reglas explícitas y datos completos.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="mockup" aria-label="Espacio para capturas del proyecto">
+                <div class="mockup-bar"></div>
+                <div class="mockup-pills">
+                  <div class="mockup-pill"></div>
+                  <div class="mockup-pill"></div>
+                  <div class="mockup-pill"></div>
+                </div>
+                <div class="mockup-panel">
+                  <div class="mockup-line"></div>
+                  <div class="mockup-line short"></div>
+                  <div class="mockup-line"></div>
+                  <div class="mockup-line short"></div>
+                </div>
+                <div class="mockup-panel">
+                  <div class="mockup-line"></div>
+                  <div class="mockup-line"></div>
+                  <div class="mockup-line short"></div>
+                </div>
+              </div>
+              <p class="muted" style="margin-top: 1rem;">
+                Puedes reemplazar este bloque por tus capturas reales del módulo dentro de Salesforce.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="steps">
+                <div class="step">
+                  <h3>Click-to-call desde múltiples orígenes</h3>
+                  <p>
+                    Diseñé una experiencia en la que la llamada podía iniciarse desde distintos objetos con campos telefónicos,
+                    manteniendo el contexto operativo desde el primer momento.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>Autocompletado y herencia dinámica de campos</h3>
+                  <p>
+                    Definí reglas para poblar automáticamente información relevante y heredar datos del objeto de origen,
+                    reduciendo fricción y errores manuales.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>Codificación guiada con dependencias</h3>
+                  <p>
+                    Estructuré la selección obligatoria y secuencial de Tipo, Motivo y Causa, para asegurar consistencia en la clasificación.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>Cierre con validaciones de negocio</h3>
+                  <p>
+                    El cierre exitoso exigía completar campos clave y contemplaba reglas automáticas y manuales para determinar si la comunicación fue efectiva.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-3" style="margin-top: 1.2rem;">
+            <article class="feature-card">
+              <h3>Permisos y control de edición</h3>
+              <p>
+                Definí visibilidad y edición por perfil: propietarios, supervisores o administradores podían modificar la codificación; el resto tenía acceso de solo lectura.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Contexto y navegación entre objetos</h3>
+              <p>
+                La llamada quedaba vinculada a tareas, casos u órdenes relacionadas, mejorando seguimiento, contexto y continuidad operativa.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Registro auditable</h3>
+              <p>
+                Todas las ediciones, codificaciones y decisiones del flujo quedaban registradas, fortaleciendo control y cumplimiento.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="impacto">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Impacto</span>
+            <h2 class="section-title">Menos fricción operativa, más orden y mejor calidad de información</h2>
+            <p class="section-subtitle">
+              El valor del proyecto no estuvo solo en digitalizar una tarea, sino en diseñar una forma más confiable de ejecutar y registrar el proceso.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="result-card">
+              <h3><strong>Mayor eficiencia operativa</strong></h3>
+              <p>
+                La población automática de campos y los pasos guiados reducen tiempo de gestión y disminuyen esfuerzo manual innecesario.
+              </p>
+            </article>
+            <article class="result-card">
+              <h3><strong>Trazabilidad completa</strong></h3>
+              <p>
+                Cada llamada queda conectada al proceso de negocio correcto, facilitando seguimiento, análisis posterior y control de calidad.
+              </p>
+            </article>
+            <article class="result-card">
+              <h3><strong>Calidad y cumplimiento</strong></h3>
+              <p>
+                Las validaciones, restricciones de edición y reglas de cierre generan datos más consistentes y un proceso más fácil de auditar.
+              </p>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top: 1.4rem;">
+            <div class="card">
+              <span class="mini-tag">En una frase</span>
+              <p class="quote">
+                Este proyecto fue el equivalente a pasar de un cuaderno desordenado lleno de notas manuales a una aplicación que guía al usuario,
+                reduce errores y deja todo bien registrado sin depender de la memoria o improvisación del operador.
+              </p>
+            </div>
+            <div class="card">
+              <span class="mini-tag">Lo que demuestra sobre mi perfil</span>
+              <ul class="bullet-list">
+                <li>Puedo mapear procesos complejos y volverlos operables.</li>
+                <li>Pienso en lógica de negocio, experiencia de usuario y datos al mismo tiempo.</li>
+                <li>Conecto necesidades operativas con diseño funcional de sistemas.</li>
+                <li>Trabajo bien en la intersección entre negocio, procesos y tecnología.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-row">
+          <p>© 2026 Michelle Arias</p>
+          <p>Caso de proyecto diseñado para un portafolio en español.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

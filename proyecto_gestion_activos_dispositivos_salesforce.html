@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto | Gestión de activos y dispositivos en Salesforce</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --bg-soft: #111827;
+        --panel: rgba(15, 23, 42, 0.86);
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-2: #818cf8;
+        --border: rgba(148, 163, 184, 0.16);
+        --success: #34d399;
+        --max-width: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--max-width));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.84rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(2, 6, 23, 0.75);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-row {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-list a {
+        color: var(--muted);
+      }
+
+      .nav-list a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 5.5rem 0 4rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.9fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+        line-height: 1.05;
+        margin-bottom: 1rem;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.08rem;
+        max-width: 730px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #062133;
+      }
+
+      .btn-secondary {
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .hero-card,
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 1.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-card {
+        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 58%), var(--panel);
+      }
+
+      .hero-card h2,
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .hero-list,
+      .bullet-list,
+      .metric-list {
+        list-style: none;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .hero-list li,
+      .metric-list li {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 0.9rem 1rem;
+      }
+
+      .hero-list strong,
+      .metric-list strong {
+        color: var(--text);
+      }
+
+      .section-header {
+        margin-bottom: 2rem;
+      }
+
+      .section-subtitle,
+      .muted,
+      .bullet-list li,
+      .step p,
+      .quote,
+      .feature-text {
+        color: var(--muted);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1.4rem;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+
+      .mini-tag {
+        display: inline-block;
+        margin-bottom: 0.8rem;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.82rem;
+      }
+
+      .problem-box {
+        border-left: 3px solid rgba(56, 189, 248, 0.45);
+        padding-left: 1rem;
+      }
+
+      .steps {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .step {
+        padding: 1rem 1rem 0;
+        border-left: 2px solid rgba(129, 140, 248, 0.45);
+      }
+
+      .step h3 {
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+      }
+
+      .feature-card,
+      .result-card {
+        background: rgba(15, 23, 42, 0.76);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 1.35rem;
+      }
+
+      .feature-card h3,
+      .result-card h3 {
+        margin-bottom: 0.7rem;
+        font-size: 1.05rem;
+      }
+
+      .result-card strong {
+        color: var(--success);
+      }
+
+      .quote {
+        font-size: 1.02rem;
+      }
+
+      .mockup {
+        min-height: 250px;
+        border-radius: 20px;
+        border: 1px dashed rgba(56, 189, 248, 0.35);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.92));
+        padding: 1rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .mockup-bar,
+      .mockup-pill,
+      .mockup-line,
+      .mockup-panel-box {
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.15);
+      }
+
+      .mockup-bar {
+        height: 14px;
+        width: 42%;
+      }
+
+      .mockup-line {
+        height: 10px;
+        width: 100%;
+      }
+
+      .mockup-line.short {
+        width: 58%;
+      }
+
+      .mockup-pills {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .mockup-pill {
+        height: 34px;
+        width: 116px;
+      }
+
+      .mockup-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+
+      .mockup-panel {
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        padding: 1rem;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .mockup-panel-box {
+        height: 88px;
+        border-radius: 14px;
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 1.6rem 0 2rem;
+        color: var(--muted);
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .grid-2,
+        .grid-3,
+        .mockup-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-row {
+          padding: 0.9rem 0;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .hero {
+          padding-top: 4.5rem;
+        }
+
+        .section {
+          padding: 3.6rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-row">
+          <a href="#inicio" class="logo">Michelle Arias · Caso de proyecto</a>
+          <nav>
+            <ul class="nav-list">
+              <li><a href="#resumen">Resumen</a></li>
+              <li><a href="#problema">Problema</a></li>
+              <li><a href="#rol">Rol</a></li>
+              <li><a href="#solucion">Solución</a></li>
+              <li><a href="#impacto">Impacto</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" id="resumen">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <span class="eyebrow">Caso de proyecto · Salesforce</span>
+              <h1>Gestión de activos y dispositivos físicos con trazabilidad de ciclo de vida</h1>
+              <p class="lead">
+                Diseñé y especifiqué un módulo robusto en Salesforce para gestionar activos y dispositivos físicos,
+                permitiendo seguir su ciclo de vida completo: creación, instalación, cambios de estado, movimientos y relaciones.
+                La solución conecta dispositivos con usuarios, ubicaciones y contratos bajo reglas claras, validaciones y trazabilidad total.
+              </p>
+              <div class="hero-actions">
+                <a href="#solucion" class="btn btn-primary">Ver solución</a>
+                <a href="#impacto" class="btn btn-secondary">Ver impacto</a>
+              </div>
+            </div>
+
+            <aside class="hero-card">
+              <h2>Resumen ejecutivo</h2>
+              <ul class="hero-list">
+                <li><strong>Rol:</strong> Business Analyst / Diseñadora de procesos</li>
+                <li><strong>Contexto:</strong> gestión operativa de activos y dispositivos en Salesforce</li>
+                <li><strong>Enfoque:</strong> trazabilidad, automatización, elegibilidad y diseño de experiencia operativa</li>
+                <li><strong>Resultado:</strong> un sistema más claro, confiable y accionable para seguir cada dispositivo</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="problema">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">El problema</span>
+            <h2 class="section-title">Muchos dispositivos, poca visibilidad y demasiada dependencia del trabajo manual</h2>
+            <p class="section-subtitle">
+              Los equipos físicos existían dentro de Salesforce, pero no había una lógica clara para saber qué dispositivo era cuál,
+              dónde estaba, en qué estado se encontraba o a quién estaba asociado. Eso generaba desorden, errores y pérdida de trazabilidad.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card problem-box">
+              <p class="quote">
+                El problema no era solo registrar equipos: era poder seguirlos de forma confiable a través del tiempo,
+                entender sus movimientos, reflejar relaciones entre componentes y asegurar que solo se instalaran en el contexto correcto.
+              </p>
+            </div>
+            <div class="card">
+              <ul class="bullet-list">
+                <li>Poca claridad sobre ubicación, estado y pertenencia de cada dispositivo.</li>
+                <li>Cambios manuales con alto riesgo de inconsistencias.</li>
+                <li>Falta de historial claro de movimientos y estados.</li>
+                <li>Dificultad para manejar jerarquías de equipos y validar elegibilidad contractual.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="rol">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Mi rol</span>
+            <h2 class="section-title">Diseñar una lógica de sistema que reflejara la realidad operativa</h2>
+            <p class="section-subtitle">
+              Mi trabajo fue estructurar cómo debían crearse, relacionarse, moverse y visualizarse los dispositivos dentro de Salesforce,
+              para que la operación no dependiera de memoria, criterios informales o ediciones manuales dispersas.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="steps">
+                <div class="step">
+                  <h3>1. Diseño de procesos de extremo a extremo</h3>
+                  <p>
+                    Definí cómo se crean los dispositivos a partir del objeto Asset, tanto manualmente como por carga masiva,
+                    asegurando asociaciones obligatorias, unicidad frente al catálogo y reglas claras de validación.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>2. Lógica de estados y movimientos</h3>
+                  <p>
+                    Diseñé transiciones de estado guiadas por acciones específicas en lugar de cambios manuales,
+                    y aseguré que cada cambio generara automáticamente un registro histórico de movimiento.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>3. Relaciones, elegibilidad y visualización</h3>
+                  <p>
+                    Estructuré la lógica padre/hijo entre dispositivos, la vinculación con usuarios, contratos y ubicaciones,
+                    y la forma en que toda esa información debía mostrarse de manera útil para el operador.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="mini-tag">Cómo aporté valor</span>
+              <ul class="metric-list">
+                <li><strong>Pensamiento de sistema:</strong> convertí operaciones dispersas en una lógica coherente de ciclo de vida.</li>
+                <li><strong>Control operativo:</strong> reduje dependencia de cambios manuales y decisiones informales.</li>
+                <li><strong>Diseño centrado en contexto:</strong> el dispositivo no vive aislado, sino conectado a usuario, contrato y ubicación.</li>
+                <li><strong>Trazabilidad real:</strong> cada cambio relevante queda registrado y puede seguirse en el tiempo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="solucion">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">La solución</span>
+            <h2 class="section-title">Un sistema que permite rastrear cada dispositivo como si tuviera GPS, historial y reglas de negocio</h2>
+            <p class="section-subtitle">
+              La solución organiza el ciclo de vida completo del activo, automatiza estados y movimientos,
+              y asegura que cada instalación o asociación cumpla con el contexto correcto antes de ejecutarse.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="mockup" aria-label="Espacio para capturas del proyecto">
+                <div class="mockup-bar"></div>
+                <div class="mockup-pills">
+                  <div class="mockup-pill"></div>
+                  <div class="mockup-pill"></div>
+                  <div class="mockup-pill"></div>
+                </div>
+                <div class="mockup-layout">
+                  <div class="mockup-panel">
+                    <div class="mockup-panel-box"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line short"></div>
+                  </div>
+                  <div class="mockup-panel">
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line short"></div>
+                    <div class="mockup-line"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="muted" style="margin-top: 1rem;">
+                Puedes reemplazar este bloque con capturas reales del módulo, listas relacionadas o vistas de instalación y seguimiento.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="steps">
+                <div class="step">
+                  <h3>Creación manual y masiva con validaciones</h3>
+                  <p>
+                    Definí flujos para registrar dispositivos de forma individual o por importación, asegurando asociaciones obligatorias y estructura consistente desde el inicio.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>Estados automatizados y registro de movimientos</h3>
+                  <p>
+                    Los cambios de estado se ejecutan mediante acciones guiadas, y cada transición queda registrada como un movimiento para mantener trazabilidad completa.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>Jerarquías padre/hijo y lógica en cascada</h3>
+                  <p>
+                    Diseñé asociaciones entre dispositivos principales y subcomponentes, asegurando que instalación o retirada se propagaran correctamente a toda la estructura relacionada.
+                  </p>
+                </div>
+                <div class="step">
+                  <h3>Vinculación contextual con reglas de elegibilidad</h3>
+                  <p>
+                    Los dispositivos solo pueden instalarse cuando cumplen criterios de usuario, contrato, grupo y ubicación, reduciendo errores y reforzando cumplimiento.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-3" style="margin-top: 1.2rem;">
+            <article class="feature-card">
+              <h3>Historial auditable</h3>
+              <p class="feature-text">
+                Cada cambio de estado y cada movimiento queda registrado, facilitando seguimiento operativo y revisión posterior.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Vista contextual para operadores</h3>
+              <p class="feature-text">
+                Diseñé listas relacionadas y vistas personalizadas para mostrar asociaciones directas e indirectas, incluso en escenarios complejos.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Menos ambigüedad operativa</h3>
+              <p class="feature-text">
+                Las acciones guiadas y las restricciones automáticas hacen que el proceso sea más claro, más rápido y mucho menos propenso a errores.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="impacto">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Impacto</span>
+            <h2 class="section-title">Más control, menos errores y una operación mucho más fácil de seguir</h2>
+            <p class="section-subtitle">
+              El valor del proyecto estuvo en convertir un caos operativo de dispositivos en un sistema con reglas claras,
+              trazabilidad real y una experiencia de uso más confiable para equipos operativos y de gestión.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="result-card">
+              <h3><strong>Trazabilidad completa</strong></h3>
+              <p>
+                Ahora es posible rastrear cada dispositivo en todas sus etapas, relaciones y movimientos, como si cada equipo tuviera su propia bitácora operativa.
+              </p>
+            </article>
+            <article class="result-card">
+              <h3><strong>Mayor eficiencia y menos errores</strong></h3>
+              <p>
+                Las validaciones, automatizaciones y acciones guiadas reducen trabajo manual y disminuyen el riesgo de inconsistencias en el registro.
+              </p>
+            </article>
+            <article class="result-card">
+              <h3><strong>Mejor cumplimiento</strong></h3>
+              <p>
+                La lógica de elegibilidad asegura que los dispositivos se instalen solo bajo condiciones correctas de contrato, usuario y ubicación.
+              </p>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top: 1.4rem;">
+            <div class="card">
+              <span class="mini-tag">En una frase</span>
+              <p class="quote">
+                Este proyecto fue pasar de un escenario de “no sé qué dispositivo está dónde” a un sistema donde cada equipo tiene historial,
+                reglas claras y contexto suficiente para saber qué es, dónde está y cómo llegó ahí.
+              </p>
+            </div>
+            <div class="card">
+              <span class="mini-tag">Lo que demuestra sobre mi perfil</span>
+              <ul class="bullet-list">
+                <li>Puedo diseñar procesos completos, no solo pantallas o campos aislados.</li>
+                <li>Pienso en operaciones reales, datos, control y experiencia de usuario al mismo tiempo.</li>
+                <li>Transformo complejidad operativa en reglas claras de sistema.</li>
+                <li>Conecto negocio, procesos y tecnología para crear soluciones utilizables.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-row">
+          <p>© 2026 Michelle Arias</p>
+          <p>Caso de proyecto diseñado para un portafolio en español.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
